@@ -8,7 +8,7 @@ import time
 class Spider():
 
     def __init__(self):
-        self.keyword = input('欢迎使用pixabay图片搜索下载器\n请输入搜索关键词：')
+        self.keyword = input('欢迎使用pixabay图片搜索下载器\n请输入搜索关键词(推荐输入英文)：') 
         self.siteURL = 'http://pixabay.com/zh/photos/?image_type=&cat=&min_width=&min_height=&q=' + str(
             self.keyword) + '&order=popular'
 
@@ -25,9 +25,9 @@ class Spider():
         pattern = re.compile('<input name="pagi.*?>.*?/ (.*?) .*?', re.S)
         items = re.search(pattern, result)
         if items.group(1) >= str(1):
-            print('\n这个主题共有图片', items.group(1), '页')
+            print('\n这个关键词共有图片', items.group(1), '页')
         else:
-            print('\n哎呀，木有您想要的图呢。。。')
+            print('\n哎呀，木有您想要的图片呢。。。')
         return items.group(1)
 
         # 匹配正则1
@@ -101,8 +101,8 @@ class Spider():
 
     def saveMorePage(self):
         numbers = self.getPageNum()
-        Num = int(input(u'一页共100张图，\n请输入要下载的页数(默认页数大于等于1）：'))
-        Start = int(input(u'请输入下载起始页数：'))
+        Num = int(input('一页共100张图，\n请输入要下载的页数(默认页数大于等于1）：'))
+        Start = int(input('请输入下载起始页数：'))
         if numbers >= str(1):
             for page in range(Start, Start + Num):
                 if page == 1:
@@ -116,11 +116,10 @@ class Spider():
                         self.keyword) + '&order=popular&pagi=' + str(page)
                     self.makeDir(path=self.keyword + 'page' + str(page))
                     self.saveOnePage(url=self.url2)
-
         else:
             return False
-
-        print('\n', '圆满成功!!!')
+        
+        print('\n', '下载成功！')
 
 if __name__ == '__main__':
     spider = Spider()
