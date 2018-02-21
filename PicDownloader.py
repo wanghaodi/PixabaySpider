@@ -65,9 +65,7 @@ class Spider():
     def makeDir(self, path):
         self.path = path.strip()
         E = os.path.exists(os.path.join('D:\Cloud', self.path))
-        if not E:
-            # 创建新目录,若想将内容保存至别的路径（非系统默认），需要更环境变量  
-            # 更改环境变量用os.chdir()  
+        if not E: 
             os.makedirs(os.path.join('D:\Cloud', self.path))
             os.chdir(os.path.join('D:\Cloud', self.path))
             print('成功创建名为', self.path, '的文件夹')
@@ -119,7 +117,7 @@ class Spider():
         else:
             return False
         
-        print('\n', '下载成功！')
+        print('\n', '所有图片下载成功！')
 
 if __name__ == '__main__':
     spider = Spider()
